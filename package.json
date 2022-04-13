@@ -3,6 +3,7 @@
 	"displayName": "Mamba Runner",
 	"description": "",
 	"version": "0.0.1",
+    "publisher": "acgri82",
     "repository": {
         "type": "git",
         "url": "git://github.com/albertodelacruz/vsc-mamba-runner.git"
@@ -27,7 +28,7 @@
 			{
 				"command": "mamba.runUnitTests",
 				"title": "Mamba Run Unit Tests"
-			}		
+			}
 		]
 	},
 	"scripts": {
