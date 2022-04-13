@@ -1,8 +1,11 @@
-# mamba-runner README
+# mamba-runner
 
 This `vscode` extension allows you to run test (*in a very quick way*) in your 🐍 `python` codebase using [`mamba`](https://github.com/nestorsalceda/mamba) test runner.
 
 > NOTE: this is an early stage project. Please open an issue or, even better, a PR if you find it interesting and you wanna improve `mamba-runner`.
+
+![cmd-palette](https://raw.githubusercontent.com/AlbertodelaCruz/vsc-mamba-runner/main/doc/images/mamba-runner.gif)
+
 
 ## Motivation
 
