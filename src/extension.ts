@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 
 // Static class that creates and holds a reference to a terminal and can run commands in it.
 class Term {
-    static termName: string = 'mamba-runner';
+    static termName = 'mamba-runner';
     static term?: vscode.Terminal;
 
     static _term() {
@@ -44,12 +44,12 @@ let runTestItem: vscode.StatusBarItem;
 // your extension is activated the very first time the command is executed
 export function activate({ subscriptions }: vscode.ExtensionContext) {
 
-	let testDisposable = vscode.commands.registerCommand('mamba.runTest', () => {
+	const testDisposable = vscode.commands.registerCommand('mamba.runTest', () => {
 		runSingleTest();
 	});
     subscriptions.push(testDisposable);
 
-    let unitTestsDisposable = vscode.commands.registerCommand('mamba.runUnitTests', () => {
+    const unitTestsDisposable = vscode.commands.registerCommand('mamba.runUnitTests', () => {
 		runUnitTests();
 	});
     subscriptions.push(unitTestsDisposable);
@@ -72,7 +72,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 }
 
 function updateStatusBarItems(): void {
-    const currentFile = vscode.window.activeTextEditor!.document.uri.path;
+    const currentFile = vscode.window.activeTextEditor?.document.uri.path;
     if (!currentFile || currentFile.slice(-2) !== 'py') {
         runTestItem.hide();
     } else {
@@ -86,9 +86,9 @@ async function runSingleTest() {
         vscode.window.showWarningMessage('No active editor');
         return;
     }
-    const res = editor!.document.uri;
+    const res = editor?.document.uri;
 
-    let command = `mamba -f documentation ${res.path}`;
+    const command = `mamba -f documentation ${res.path}`;
     runCommand(command);
 }
 
@@ -98,10 +98,10 @@ async function runUnitTests() {
         vscode.window.showWarningMessage('No active editor');
         return;
     }
-    const res = editor!.document.uri;
-    const projectFolder = vscode.workspace.getWorkspaceFolder(res)!.uri.fsPath;
+    const res = editor?.document.uri;
+    const projectFolder = vscode.workspace.getWorkspaceFolder(res)?.uri.fsPath;
 
-    let command = `mamba $(find ${projectFolder} -type d -name specs)`;
+    const command = `mamba $(find ${projectFolder} -type d -name specs)`;
     runCommand(command);
 }
 
@@ -114,4 +114,5 @@ export function runCommand(cmd: string) {
 }
 
 // this method is called when your extension is deactivated
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 export function deactivate() {}
