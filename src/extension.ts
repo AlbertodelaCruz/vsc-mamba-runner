@@ -37,19 +37,47 @@ class Term {
     }
 }
 
+// status bar item
+let runTestItem: vscode.StatusBarItem;
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+export function activate({ subscriptions }: vscode.ExtensionContext) {
 
 	let testDisposable = vscode.commands.registerCommand('mamba.runTest', () => {
 		runSingleTest();
 	});
+    subscriptions.push(testDisposable);
+
     let unitTestsDisposable = vscode.commands.registerCommand('mamba.runUnitTests', () => {
 		runUnitTests();
 	});
+    subscriptions.push(unitTestsDisposable);
 
-	context.subscriptions.push(testDisposable);
-    context.subscriptions.push(unitTestsDisposable);
+    // create a new status bar item that we can now manage
+    runTestItem = vscode.window.createStatusBarItem(
+        vscode.StatusBarAlignment.Right,
+        650
+    );
+    runTestItem.command = 'mamba.runTest';
+    runTestItem.tooltip = 'Mamba runner';
+    runTestItem.text = `💻  $(testing-run-icon)`;
+    subscriptions.push(runTestItem);
+
+    subscriptions.push(
+        vscode.window.onDidChangeActiveTextEditor(updateStatusBarItems)
+    );
+
+    updateStatusBarItems();
+}
+
+function updateStatusBarItems(): void {
+    const currentFile = vscode.window.activeTextEditor!.document.uri.path;
+    if (!currentFile || currentFile.slice(-2) !== 'py') {
+        runTestItem.hide();
+    } else {
+        runTestItem.show();
+    }
 }
 
 async function runSingleTest() {
@@ -59,7 +87,7 @@ async function runSingleTest() {
         return;
     }
     const res = editor!.document.uri;
-    
+
     let command = `mamba -f documentation ${res.path}`;
     runCommand(command);
 }
@@ -72,7 +100,7 @@ async function runUnitTests() {
     }
     const res = editor!.document.uri;
     const projectFolder = vscode.workspace.getWorkspaceFolder(res)!.uri.fsPath;
-    
+
     let command = `mamba $(find ${projectFolder} -type d -name specs)`;
     runCommand(command);
 }

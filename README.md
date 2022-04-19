@@ -28,7 +28,13 @@ At this moment. There is only 2 commands available:
 
 You can run them using the `VSCode` command palette (`⇧⌘P` or `ctr⇧P`).
 
+Once you have run tests, a status bar icon will appear at the botton right (💻▶)
+
 ## Release Notes
+
+### 0.0.2
+
+- Add Status Bar for executing file tests 💻▶.
 
 ### 0.0.1
 

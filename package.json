@@ -2,7 +2,7 @@
   "name": "mamba-runner",
 	"displayName": "Mamba Runner",
 	"description": "",
-	"version": "0.0.1",
+	"version": "0.0.2",
     "publisher": "acgri82",
     "repository": {
         "type": "git",
