@@ -1,5 +1,7 @@
 # mamba-runner
 
+![vs](https://vsmarketplacebadge.apphb.com/version-short/acgri82.mamba-runner.svg) ![vs-d](https://vsmarketplacebadge.apphb.com/installs/acgri82.mamba-runner.svg) ![dow](https://vsmarketplacebadge.apphb.com/downloads/acgri82.mamba-runner.svg) ![rating](https://vsmarketplacebadge.apphb.com/rating-star/acgri82.mamba-runner.svg)
+
 This `vscode` extension allows you to run test (*in a very quick way*) in your 🐍 `python` codebase using [`mamba`](https://github.com/nestorsalceda/mamba) test runner.
 
 > NOTE: this is an early stage project. Please open an issue or, even better, a PR if you find it interesting and you wanna improve `mamba-runner`.
