@@ -30,6 +30,11 @@ You can run them using the `VSCode` command palette (`⇧⌘P` or `ctr⇧P`).
 
 Once you have run tests, a status bar icon will appear at the botton right (💻▶)
 
+## Credits
+
+A good starting point is [official documentation](https://code.visualstudio.com/api)
+This repo is highly inspired in [pytest-runner](https://github.com/ernestoarbitrio/pytest-runner) from Ernesto Arbitrio
+
 ## Release Notes
 
 ### 0.0.2
