@@ -7,9 +7,11 @@ class Term {
     static termName = 'mamba-runner';
     static term?: vscode.Terminal;
 
-    static _term() {
+    static async _term() {
         if (!Term.term) {
             Term.term = vscode.window.createTerminal(Term.termName);
+            // wait 2 second before showing to load virtualenv
+            await new Promise(r => setTimeout(r, 2000));
             Term.term.show(true);
             // if user closes the terminal, delete our reference:
             vscode.window.onDidCloseTerminal((event) => {
@@ -22,17 +24,15 @@ class Term {
     }
 
     static async run(command: string) {
-        Term._term().show();
+        (await Term._term()).show();
         // clear text in current terminal
         vscode.commands.executeCommand('workbench.action.terminal.clear');
-		// wait 2 second before running command to load virtualenv
-		await new Promise(r => setTimeout(r, 2000));
-        Term._term().sendText(command, true);
+        (await Term._term()).sendText(command, true);
     }
 
-    static dispose() {
-        if (Term._term()) {
-            Term._term().dispose();
+    static async dispose() {
+        if (await Term._term()) {
+            (await Term._term()).dispose();
         }
     }
 }

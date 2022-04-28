@@ -32,10 +32,6 @@ You can run them using the `VSCode` command palette (`⇧⌘P` or `ctr⇧P`).
 
 Once you have run tests, a status bar icon will appear at the botton right (💻▶)
 
-## Known Issues
-
-Mamba runner waits some seconds until virtualenv is loaded and then execute tests. First test execution after VSCode is opened could fail because it takes a bit longer to load virtualenv and mamba command is not accessible.
-
 ## Credits
 
 A good starting point is [official documentation](https://code.visualstudio.com/api)
